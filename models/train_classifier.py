@@ -16,6 +16,7 @@ from nltk.stem.porter import PorterStemmer
 from sklearn.metrics import confusion_matrix, classification_report, f1_score, roc_auc_score, recall_score
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline, FeatureUnion
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.multioutput import MultiOutputClassifier

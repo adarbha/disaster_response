@@ -17,10 +17,10 @@ from sklearn.metrics import confusion_matrix, classification_report, f1_score, r
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier, AdaBoostClassifier
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline, FeatureUnion
-
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.multioutput import MultiOutputClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import make_scorer
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -89,7 +89,27 @@ class StartingVerbExtractor(BaseEstimator, TransformerMixin):
 
 
 def build_model():
-    pass
+    pipeline = Pipeline([
+        ('features', FeatureUnion([
+
+            ('text_pipeline', Pipeline([
+                ('vect', CountVectorizer(tokenizer=tokenize)),
+                ('tfidf', TfidfTransformer())
+            ])),
+
+            ('starting_verb', StartingVerbExtractor())
+        ])),
+
+        ('clf', MultiOutputClassifier(LogisticRegression(class_weight = 'balanced')))
+    ])
+    return pipeline
+
+def custom_f1_scorer(y_true, y_pred):
+    '''Returns a mean recall score of each of the categories. This scorer is used while performing GridSearch'''
+    recall_scores = []
+    for i in range((y_true.shape[1])):
+        recall_scores.append(recall_score(y_true = y_true.iloc[:,i], y_pred = y_pred[:,i]))
+    return np.mean(recall_scores)
 
 
 def evaluate_model(model, X_test, Y_test, category_names):

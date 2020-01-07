@@ -125,19 +125,18 @@ def grid_search_for_params(X_train, y_train, model,  custom_scorer):
     
     return cv
 
-def print_classification_report(y_pred, y_test):
+def print_classification_report(y_pred, y_test, colnames):
     '''Prints a classification report for each of the columns'''
     for i in range(y_test.shape[1]):
-        print(y_test.columns[i])
+        print(colnames[i])
         print(classification_report(y_true = y_test.iloc[:,i], y_pred = y_pred[:,i]))
     return None
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    
-    
-    
-    pass
+    X_test_mult_op = model.predict(X_test)
+    print_classification_report(X_test_mult_op, Y_test)
+    return None
 
 
 def save_model(model, model_filepath):
@@ -159,7 +158,7 @@ def main():
         besst_model = grid_search_for_params(X_train, Y_train, model, custom_recall_scorer)
         
         print('Evaluating model...')
-        evaluate_model(best_model, X_test, Y_test, category_names, custom_recall_scorer)
+        evaluate_model(best_model, X_test, Y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)

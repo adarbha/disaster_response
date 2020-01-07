@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Disaster Response Pipeline Project
 
 ### Instructions:
@@ -12,3 +13,6 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+=======
+# udacity_disaster_response
+>>>>>>> 2347ad91ec6752b73b70e1cf26b8a2d560191623

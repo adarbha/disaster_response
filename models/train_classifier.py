@@ -4,7 +4,7 @@ import numpy as np
 import seaborn as sns
 import re
 import nltk
-import pycountry
+import pickle
 
 from sqlalchemy import create_engine
 
@@ -29,7 +29,7 @@ nltk.download('averaged_perceptron_tagger')
 
 def load_data(database_filepath):
     '''Loads data table from SQLite db and returns X, Y and category names'''
-    engine = create_engine('sqlite:///DisasterResponse.db')
+    engine = create_engine('sqlite:///{}'.format(database_filepath))
     df = pd.read_sql_table(database_filepath, engine)
     
     ## Remove column original/child_alone as it doesn't add any value. Child alone has zero variance
@@ -140,7 +140,8 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
-    pass
+    with open(model_filepath, 'wb') as f:
+        pickle.dump(model, f)
 
 
 def main():

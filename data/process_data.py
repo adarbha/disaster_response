@@ -33,16 +33,22 @@ def load_data(messages_filepath, categories_filepath):
     # drop the original categories column from `df` and concat with new categories df
     df = df.drop(columns=['categories'])
     df = pd.concat([df, categories], axis = 1)
+    
+    return df
 
     
 
 def clean_data(df):
-    ''''''
-    pass
+    '''Remove duplicates. '''
+    # drop duplicates
+    df = df.drop_duplicates()
+    return df
 
 
 def save_data(df, database_filename):
-    pass  
+    '''Saving to sqlite database DisasterResponse.db'''
+    engine = create_engine('sqlite:///DisasterResponse.db')
+    df.to_sql(database_filename, engine, index=False)
 
 
 def main():

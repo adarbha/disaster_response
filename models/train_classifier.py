@@ -157,13 +157,13 @@ def main():
         
         print('Training model...')
 #         model.fit(X_train, Y_train)
-        besst_model = grid_search_for_params(X_train, Y_train, model, custom_recall_scorer)
+        best_model = grid_search_for_params(X_train, Y_train, model, custom_recall_scorer)
         
         print('Evaluating model...')
         evaluate_model(best_model, X_test, Y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
-        save_model(model, model_filepath)
+        save_model(best_model, model_filepath)
 
         print('Trained model saved!')
 

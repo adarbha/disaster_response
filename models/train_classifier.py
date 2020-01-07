@@ -31,7 +31,7 @@ nltk.download('averaged_perceptron_tagger')
 def load_data(database_filepath):
     '''Loads data table from SQLite db and returns X, Y and category names'''
     engine = create_engine('sqlite:///{}'.format(database_filepath))
-    df = pd.read_sql_table(database_filepath, engine)
+    df = pd.read_sql_table('msg_cat', engine)
     
     ## Remove column original/child_alone as it doesn't add any value. Child alone has zero variance
     df = df.drop(columns = ['original','child_alone'])

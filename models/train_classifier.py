@@ -104,15 +104,39 @@ def build_model():
     ])
     return pipeline
 
-def custom_f1_scorer(y_true, y_pred):
+def custom_recall_scorer(y_true, y_pred):
     '''Returns a mean recall score of each of the categories. This scorer is used while performing GridSearch'''
     recall_scores = []
     for i in range((y_true.shape[1])):
         recall_scores.append(recall_score(y_true = y_true.iloc[:,i], y_pred = y_pred[:,i]))
     return np.mean(recall_scores)
 
+def grid_search_for_params(X_train, y_train, model,  custom_scorer):
+    '''Run a grid search on select params to return a model with optimized params according to custom scorer for the pipeline'''
+    #Build a custom scorer
+    scorer = make_scorer(custom_scorer)
+    
+    #Parameter for grid_search
+    parameters = {'clf__estimator__C':[1, 10, 100]}
+    
+    cv = GridSearchCV(model, parameters, cv=3, scoring=scorer)
+
+    cv.fit(X_train, y_train)
+    
+    return cv
+
+def print_classification_report(y_pred, y_test):
+    '''Prints a classification report for each of the columns'''
+    for i in range(y_test.shape[1]):
+        print(y_test.columns[i])
+        print(classification_report(y_true = y_test.iloc[:,i], y_pred = y_pred[:,i]))
+    return None
+
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    
+    
+    
     pass
 
 
@@ -131,10 +155,11 @@ def main():
         model = build_model()
         
         print('Training model...')
-        model.fit(X_train, Y_train)
+#         model.fit(X_train, Y_train)
+        besst_model = grid_search_for_params(X_train, Y_train, model, custom_recall_scorer)
         
         print('Evaluating model...')
-        evaluate_model(model, X_test, Y_test, category_names)
+        evaluate_model(best_model, X_test, Y_test, category_names, custom_recall_scorer)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
         save_model(model, model_filepath)

@@ -13,6 +13,21 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
-=======
-# udacity_disaster_response
->>>>>>> 2347ad91ec6752b73b70e1cf26b8a2d560191623
+
+
+## Table of Contents
+1. ### Installation
+    This code is run on Python 3.6 in conda virtual environment. Please install all the python dependencies using **requirements.txt** 
+2. ### Project Motivation
+    
+3. ### Files and their description
+    * 
+    * 
+    
+4. ### Results
+   - 
+   -
+   
+
+5. ### License
+   

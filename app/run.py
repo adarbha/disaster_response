@@ -32,6 +32,8 @@ def tokenize(text):
 # load data
 engine = create_engine('sqlite:///DisasterResponse.db')
 df = pd.read_sql_table('msg_cat', engine)
+# Need to remove child_alone column
+df = df.drop(columns = ['original','child_alone'])
 
 # load model
 model = joblib.load("test_0.pkl")
@@ -85,8 +87,13 @@ def go():
     query = request.args.get('query', '') 
 
     # use model to predict classification for query
+    print(query)
     classification_labels = model.predict([query])[0]
-    classification_results = dict(zip(df.columns[4:], classification_labels))
+    print('classification_labels')
+    print(classification_labels)
+    classification_results = dict(zip(df.columns[3:], classification_labels))
+    print('classification_results')
+    print(classification_results)
 
     # This will render the go.html Please see that file. 
     return render_template(

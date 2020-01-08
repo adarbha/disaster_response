@@ -66,26 +66,26 @@ def tokenize(text):
     
     return tokens
 
-class StartingVerbExtractor(BaseEstimator, TransformerMixin):
-    '''Transformer class to check if the first word is a verb'''
+# class StartingVerbExtractor(BaseEstimator, TransformerMixin):
+#     '''Transformer class to check if the first word is a verb'''
 
-    def starting_verb(self, text):
-        sentence_list = nltk.sent_tokenize(text)
-        for sentence in sentence_list:
-            pos_tags = nltk.pos_tag(tokenize(sentence))
-            if len(pos_tags) == 0:
-                return False
-            first_word, first_tag = pos_tags[0]
-            if first_tag in ['VB', 'VBP'] or first_word == 'RT':
-                return True
-        return False
+#     def starting_verb(self, text):
+#         sentence_list = nltk.sent_tokenize(text)
+#         for sentence in sentence_list:
+#             pos_tags = nltk.pos_tag(tokenize(sentence))
+#             if len(pos_tags) == 0:
+#                 return False
+#             first_word, first_tag = pos_tags[0]
+#             if first_tag in ['VB', 'VBP'] or first_word == 'RT':
+#                 return True
+#         return False
 
-    def fit(self, X, y=None):
-        return self
+#     def fit(self, X, y=None):
+#         return self
 
-    def transform(self, X):
-        X_tagged = pd.Series(X).apply(self.starting_verb)
-        return pd.DataFrame(X_tagged)
+#     def transform(self, X):
+#         X_tagged = pd.Series(X).apply(self.starting_verb)
+#         return pd.DataFrame(X_tagged)
 
 
 
@@ -96,9 +96,9 @@ def build_model():
             ('text_pipeline', Pipeline([
                 ('vect', CountVectorizer(tokenizer=tokenize)),
                 ('tfidf', TfidfTransformer())
-            ])),
+            ]))
 
-            ('starting_verb', StartingVerbExtractor())
+#             ('starting_verb', StartingVerbExtractor())
         ])),
 
         ('clf', MultiOutputClassifier(LogisticRegression(class_weight = 'balanced')))
@@ -136,7 +136,7 @@ def print_classification_report(y_pred, y_test, colnames):
 
 def evaluate_model(model, X_test, Y_test, category_names):
     X_test_mult_op = model.predict(X_test)
-    print_classification_report(X_test_mult_op, Y_test)
+    print_classification_report(X_test_mult_op, Y_test, category_names)
     return None
 
 
@@ -163,7 +163,7 @@ def main():
         evaluate_model(best_model, X_test, Y_test, category_names)
 
         print('Saving model...\n    MODEL: {}'.format(model_filepath))
-        save_model(best_model, model_filepath)
+        save_model(best_model.best_estimator_, model_filepath)
 
         print('Trained model saved!')
 

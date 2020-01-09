@@ -89,17 +89,18 @@ def go():
     # use model to predict classification for query
     print(query)
     classification_labels = model.predict([query])[0]
-    print('classification_labels')
-    print(classification_labels)
+    classification_probas = model.predict_proba([query])
+    classification_probas = [i.tolist()[0][1] for i in classification_probas]
+    print('classification_probas')
     classification_results = dict(zip(df.columns[3:], classification_labels))
-    print('classification_results')
-    print(classification_results)
+    classification_results_ = dict(zip(classification_results.keys(), list(zip(classification_labels.tolist(), classification_probas))))
+
 
     # This will render the go.html Please see that file. 
     return render_template(
         'go.html',
         query=query,
-        classification_result=classification_results
+        classification_result=classification_results_
     )
 
 

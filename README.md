@@ -18,25 +18,25 @@
 1. ### Installation
     This code is run on Python 3.6.x. Please install all the python dependencies using **requirements.txt**.
 2. ### Project Motivation
-	 Analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages. Using real messages that were sent during disaster events, goal is to create a machine learning pipeline to categorize these events and categorize them into 36 categories. Categories extracted from input data. An an emergency worker can input a new message and get classification results in several categories.
+	 Analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages. Using real messages that were sent during disaster events, goal is to create a machine learning pipeline to categorize these events into 36 categories. Categories are extracted from input data. An emergency worker can input a new message and get classification results with respective probabilty of the category being true, for selected categories.
     
 3. ### Files and their description
-    ├── app
-    ├── run.py
-    └── templates
-        ├── go.html
-        └── master.html
-	├── data
-    ├── disaster_categories.csv
-    ├── disaster_messages.csv
-    └── process_data.py
-	├── DisasterResponse.db
-	├── license.txt
-	├── models
-    └── train_classifier.py
-	├── README.md
-	├── test_0.pkl
-	├── test.pkl
+    ├── app </br>
+    ├── run.py </br>
+    └── templates </br>
+        ├── go.html </br>
+        └── master.html </br>
+	├── data</br>
+    ├── disaster_categories.csv</br></br>
+    ├── disaster_messages.csv</br>
+    └── process_data.py</br>
+	├── DisasterResponse.db</br>
+	├── license.txt</br>
+	├── models</br>
+    └── train_classifier.py</br>
+	├── README.md</br>
+	├── test_0.pkl</br>
+	├── test.pkl</br>
     
     - app - contains all app running assets.**templates** directory has html pages that the app serves.**run.py** has code to run the trained model
     - data - messages and categories csvs are used as trianing data for model generation. **process_data.py** performs ETL part of the pipeline

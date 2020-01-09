@@ -22,7 +22,7 @@
     
 3. ### Files and their description
 Below is the directory structure</br>
-.
+.</br>
 ├── app</br>
 │   ├── run.py</br>
 │   └── templates</br>

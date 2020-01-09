@@ -31,21 +31,22 @@ Below is the directory structure</br>
 ├── data</br>
 │   ├── disaster_categories.csv</br>
 │   ├── disaster_messages.csv</br>
+│   ├── DisasterResponse.db</br>
 │   └── process_data.py</br>
-├── DisasterResponse.db</br>
+├── __init__.py</br>
 ├── license.txt</br>
 ├── models</br>
+│   ├── __init__.py</br>
+│   ├── test_0.pkl</br>
 │   └── train_classifier.py</br>
 ├── README.md</br>
-├── requirements.txt</br>
-├── test_0.pkl</br>
-├── test.pkl
-└── trained_model_0.pkl
+└── requirements.txt</br>
+
     
     - app - contains all app running assets.**templates** directory has html pages that the app serves.**run.py** has code to run the trained model
-    - data - messages and categories csvs are used as trianing data for model generation. **process_data.py** performs ETL part of the pipeline
-    - models - **train_classifier.py** Generates the trained model as pickle file
-    - 
+    - data - messages and categories csvs are used as trianing data for model generation. **process_data.py** performs ETL part of the pipeline. **DisasterResponse.db** is the product of the ETL pipeline
+    - models - **train_classifier.py** Generates the trained model as pickle file. **test_0.pkl** is the trained model used for predictions
+    - requirements.txt - Python dependencied file
     
     
 4. ### Results

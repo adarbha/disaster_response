@@ -21,7 +21,7 @@
 	 Analyze disaster data from Figure Eight to build a model for an API that classifies disaster messages. Using real messages that were sent during disaster events, goal is to create a machine learning pipeline to categorize these events into 36 categories. Categories are extracted from input data. An emergency worker can input a new message and get classification results with respective probabilty of the category being true, for selected categories.
     
 3. ### Files and their description
-Below is the directory structure
+Below is the directory structure</br>
 .
 ├── app</br>
 │   ├── run.py</br>
@@ -45,6 +45,7 @@ Below is the directory structure
     - app - contains all app running assets.**templates** directory has html pages that the app serves.**run.py** has code to run the trained model
     - data - messages and categories csvs are used as trianing data for model generation. **process_data.py** performs ETL part of the pipeline
     - models - **train_classifier.py** Generates the trained model as pickle file
+    - 
     
     
 4. ### Results

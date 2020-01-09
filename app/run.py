@@ -30,13 +30,13 @@ def tokenize(text):
     return clean_tokens
 
 # load data
-engine = create_engine('sqlite:///DisasterResponse.db')
+engine = create_engine('sqlite:////home/workspace/data/DisasterResponse.db')
 df = pd.read_sql_table('msg_cat', engine)
 # Need to remove child_alone column
 df = df.drop(columns = ['original','child_alone'])
 
 # load model
-model = joblib.load("test_0.pkl")
+model = joblib.load("/home/workspace/models/test_0.pkl")
 
 
 # index webpage displays cool visuals and receives user input text for model

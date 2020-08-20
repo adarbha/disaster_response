@@ -10,24 +10,23 @@
 3. ### Files and their description
 Below is the directory structure</br>
 .</br>
-├── app</br>
-│   ├── run.py</br>
-│   └── templates</br>
-│       ├── go.html</br>
-│       └── master.html</br>
-├── data</br>
-│   ├── disaster_categories.csv</br>
-│   ├── disaster_messages.csv</br>
-│   ├── DisasterResponse.db</br>
-│   └── process_data.py</br>
-├── __init__.py</br>
-├── license.txt</br>
-├── models</br>
-│   ├── __init__.py</br>
-│   ├── test_0.pkl</br>
-│   └── train_classifier.py</br>
-├── README.md</br>
-└── requirements.txt</br>
+.
+├── README.md
+├── app
+│   ├── run.py
+│   └── templates
+│       ├── go.html
+│       └── master.html
+├── data
+│   ├── DisasterResponse.db
+│   ├── disaster_categories.csv
+│   ├── disaster_messages.csv
+│   └── process_data.py
+├── license.txt
+├── models
+│   ├── test_0.pkl
+│   └── train_classifier.py
+└── requirements.txt
 
     
     - app - contains all app running assets.**templates** directory has html pages that the app serves.**run.py** has code to run the trained model
